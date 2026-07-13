@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="ne">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="नेपाली साङ्केतिक भाषा पहिचान तथा निरन्तर साइन बुझाइसम्बन्धी अनुसन्धानको हालसम्मको प्रगति, नतिजा र आगामी काम।">
+  <meta name="theme-color" content="#102a2a">
+  <title>नेपाली साङ्केतिक भाषा अनुसन्धान — हालसम्मको प्रगति</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&amp;family=Noto+Serif+Devanagari:wght@600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #17201e;
+      --muted: #66716d;
+      --paper: #f5f1e8;
+      --card: #fffdf8;
+      --forest: #123c3a;
+      --forest-2: #1d5a54;
+      --mint: #dfeee7;
+      --sun: #e9b44c;
+      --terracotta: #bf6547;
+      --line: rgba(23, 32, 30, .14);
+      --shadow: 0 18px 50px rgba(18, 60, 58, .11);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 3%, rgba(233, 180, 76, .15), transparent 23rem),
+        radial-gradient(circle at 92% 18%, rgba(29, 90, 84, .12), transparent 28rem),
+        var(--paper);
+      font-family: "Noto Sans Devanagari", Mangal, sans-serif;
+      font-size: 17px;
+      line-height: 1.75;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; }
+    .wrap { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    .skip {
+      position: fixed; left: 14px; top: -80px; z-index: 100;
+      padding: 10px 14px; background: #fff; border-radius: 8px;
+    }
+    .skip:focus { top: 14px; }
+
+    header {
+      min-height: 760px;
+      color: #fff;
+      background:
+        linear-gradient(115deg, rgba(7, 25, 24, .96), rgba(18, 60, 58, .92)),
+        linear-gradient(45deg, #102a2a, #1d5a54);
+      position: relative;
+      overflow: hidden;
+    }
+    header::before, header::after {
+      content: ""; position: absolute; border: 1px solid rgba(255,255,255,.13);
+      border-radius: 50%; pointer-events: none;
+    }
+    header::before { width: 520px; height: 520px; right: -170px; top: 80px; }
+    header::after { width: 280px; height: 280px; right: 80px; top: 200px; }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 82px; border-bottom: 1px solid rgba(255,255,255,.14);
+      position: relative; z-index: 2;
+    }
+    .brand { font-weight: 800; letter-spacing: .02em; }
+    .navlinks { display: flex; gap: 24px; font-size: 14px; font-weight: 600; }
+    .navlinks a { color: rgba(255,255,255,.82); text-decoration: none; }
+    .navlinks a:hover { color: #fff; }
+    .hero {
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: 70px;
+      align-items: center; padding: 90px 0 110px; position: relative; z-index: 1;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-size: 13px; font-weight: 700; letter-spacing: .05em;
+      text-transform: uppercase; color: #bfe0d5;
+    }
+    .eyebrow::before { content: ""; width: 32px; height: 2px; background: var(--sun); }
+    h1, h2, h3 { margin: 0; line-height: 1.28; }
+    h1 {
+      max-width: 820px; margin-top: 22px;
+      font-family: "Noto Serif Devanagari", serif;
+      font-size: clamp(48px, 6.2vw, 82px); letter-spacing: -.025em;
+    }
+    .hero p { max-width: 720px; color: rgba(255,255,255,.77); font-size: 20px; margin: 28px 0 34px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 48px;
+      padding: 10px 18px; border-radius: 999px; text-decoration: none; font-weight: 700;
+      border: 1px solid rgba(255,255,255,.25);
+    }
+    .button.primary { color: #17201e; background: var(--sun); border-color: var(--sun); }
+    .button.secondary { color: #fff; background: rgba(255,255,255,.07); }
+    .hero-note {
+      align-self: end; padding: 28px; border-radius: var(--radius);
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
+      backdrop-filter: blur(10px);
+    }
+    .hero-note b { display: block; color: var(--sun); font-size: 15px; margin-bottom: 8px; }
+    .hero-note p { margin: 0; font-size: 15px; line-height: 1.7; }
+
+    main section { padding: 102px 0; }
+    main section + section { border-top: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: .75fr 1.25fr; gap: 64px; margin-bottom: 54px; }
+    .kicker { color: var(--terracotta); font-weight: 800; font-size: 14px; letter-spacing: .04em; }
+    h2 { font-family: "Noto Serif Devanagari", serif; font-size: clamp(36px, 4.5vw, 57px); margin-top: 10px; }
+    .section-head > p { color: var(--muted); font-size: 19px; margin: 14px 0 0; }
+    h3 { font-size: 23px; }
+    p { margin: 12px 0 0; }
+
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: -58px; position: relative; z-index: 4; }
+    .stat { padding: 28px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); }
+    .stat strong { display: block; color: var(--forest); font-size: 34px; line-height: 1.2; }
+    .stat span { display: block; color: var(--muted); font-size: 14px; margin-top: 8px; }
+
+    .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .flow article {
+      position: relative; min-height: 210px; padding: 24px 20px;
+      border-radius: 18px; background: var(--card); border: 1px solid var(--line);
+    }
+    .flow article:not(:last-child)::after {
+      content: "→"; position: absolute; z-index: 2; right: -18px; top: 82px;
+      width: 24px; height: 24px; display: grid; place-items: center;
+      color: var(--terracotta); background: var(--paper); font-weight: 800;
+    }
+    .step { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--mint); color: var(--forest); font-weight: 800; margin-bottom: 22px; }
+    .flow p { color: var(--muted); font-size: 14px; line-height: 1.65; }
+
+    .timeline { display: grid; gap: 0; }
+    .milestone {
+      display: grid; grid-template-columns: 150px 1fr; gap: 30px;
+      padding: 34px 0; border-bottom: 1px solid var(--line);
+    }
+    .milestone:first-child { border-top: 1px solid var(--line); }
+    .milestone .date { color: var(--forest-2); font-weight: 800; font-size: 14px; }
+    .milestone p { color: var(--muted); }
+
+    .results-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; align-items: start; }
+    .panel { padding: 32px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); }
+    .panel.dark { color: #fff; background: var(--forest); border-color: transparent; }
+    .panel.dark p { color: rgba(255,255,255,.72); }
+    .metric { margin-top: 25px; }
+    .metric-line { display: flex; justify-content: space-between; gap: 20px; font-size: 14px; }
+    .metric-line b { color: var(--forest); }
+    .bar { height: 12px; background: #e7e6df; border-radius: 999px; overflow: hidden; margin-top: 8px; }
+    .bar i { display: block; height: 100%; border-radius: inherit; background: var(--forest-2); }
+    .bar i.best { background: var(--terracotta); }
+    .bar i.fail { background: #909995; }
+    .callout { margin-top: 24px; padding: 20px; border-left: 4px solid var(--sun); background: rgba(233,180,76,.12); border-radius: 0 12px 12px 0; }
+    .callout p { margin: 0; color: #4d4a40; }
+    .fineprint { color: var(--muted); font-size: 13px; line-height: 1.65; margin-top: 22px; }
+
+    .inventory { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .inventory article { padding: 27px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; }
+    .inventory strong { display: block; color: var(--terracotta); font-size: 28px; line-height: 1.2; margin-bottom: 10px; }
+    .inventory p { color: var(--muted); font-size: 15px; }
+
+    .guardrails { background: #e8efe9; }
+    .guardgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .guardgrid article { padding: 26px; background: rgba(255,255,255,.62); border: 1px solid rgba(18,60,58,.13); border-radius: 16px; }
+    .guardgrid p { color: #53615c; font-size: 15px; }
+
+    .next { display: grid; grid-template-columns: .9fr 1.1fr; gap: 28px; align-items: stretch; }
+    .ask { padding: 38px; color: #fff; background: var(--forest); border-radius: var(--radius); }
+    .ask p { color: rgba(255,255,255,.74); }
+    .ask ul { padding-left: 22px; margin: 22px 0 0; }
+    .ask li { margin: 9px 0; }
+    .worklist { display: grid; gap: 12px; }
+    .workitem { display: grid; grid-template-columns: 44px 1fr; gap: 15px; padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 15px; }
+    .workitem b:first-child { color: var(--terracotta); font-size: 18px; }
+    .workitem p { color: var(--muted); font-size: 14px; }
+
+    footer { color: rgba(255,255,255,.78); background: #0c2423; padding: 56px 0; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 30px; align-items: end; }
+    footer strong { display: block; color: #fff; font-size: 20px; }
+    footer p { max-width: 650px; font-size: 13px; }
+    footer a { color: #d9b45d; }
+
+    @media (max-width: 900px) {
+      .hero, .section-head, .results-layout, .next { grid-template-columns: 1fr; }
+      .hero { gap: 34px; padding-top: 65px; }
+      header { min-height: auto; }
+      .stats { grid-template-columns: repeat(2, 1fr); margin-top: 28px; }
+      .flow { grid-template-columns: 1fr 1fr; }
+      .flow article:not(:last-child)::after { display: none; }
+      .inventory { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      body { font-size: 16px; }
+      .wrap { width: min(100% - 24px, 1160px); }
+      .navlinks { display: none; }
+      nav { min-height: 68px; }
+      h1 { font-size: 44px; }
+      main section { padding: 74px 0; }
+      .stats, .flow, .inventory, .guardgrid { grid-template-columns: 1fr; }
+      .milestone { grid-template-columns: 1fr; gap: 8px; }
+      .panel, .ask { padding: 25px; }
+      footer .wrap { display: block; }
+      footer p { margin-top: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main-content">मुख्य सामग्रीमा जानुहोस्</a>
+
+  <header>
+    <div class="wrap">
+      <nav aria-label="मुख्य नेभिगेसन">
+        <div class="brand">नेपाली साङ्केतिक भाषा अनुसन्धान</div>
+        <div class="navlinks">
+          <a href="#progress">प्रगति</a>
+          <a href="#results">नतिजा</a>
+          <a href="#data">डाटा</a>
+          <a href="#collaboration">सहयोग</a>
+        </div>
+      </nav>
+
+      <div class="hero">
+        <div>
+          <span class="eyebrow">अनुसन्धान अवस्था · १३ जुलाई २०२६</span>
+          <h1>सफा संकेतबाट निरन्तर साइनसम्म</h1>
+          <p>नेपाली साङ्केतिक भाषा पहिचान गर्ने प्रणाली बनाउँदा हामीले के तयार गर्‍यौँ, के नतिजा आयो, कहाँ असफल भयौँ र अब किन अनुभवी साइनर तथा दोभाषेको सहयोग निर्णायक छ—यो पृष्ठ त्यसको खुला र इमानदार सारांश हो।</p>
+          <div class="actions">
+            <a class="button primary" href="#results">मुख्य नतिजा हेर्नुहोस्</a>
+            <a class="button secondary" href="#collaboration">सहयोगको आवश्यकता</a>
+          </div>
+        </div>
+        <aside class="hero-note">
+          <b>अहिलेको स्पष्ट निष्कर्ष</b>
+          <p>शब्दकोश-जस्तो छुट्टै संकेत पहिचान गर्न प्रणालीले वास्तविक क्षमता देखाएको छ। तर प्राकृतिक, लगातार साइनमा संकेतहरू एक-अर्कासँग मिसिने भएकाले सही समय-सीमा र अर्थ मिलाउने विश्वसनीय प्रशिक्षण उदाहरण अझै अपर्याप्त छन्।</p>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="wrap stats" aria-label="परियोजनाका मुख्य संख्या">
+      <div class="stat"><strong>११९.६ घण्टा</strong><span>निरन्तर साइनको पोज डाटा</span></div>
+      <div class="stat"><strong>३,६५३</strong><span>शब्द/अवधारणाको खोज ग्यालरी</span></div>
+      <div class="stat"><strong>२१९</strong><span>मानव-पुष्टि भएका छुट्टै संकेत</span></div>
+      <div class="stat"><strong>३७</strong><span>स्थिर राखिएको निरन्तर मूल्याङ्कन सेट</span></div>
+    </div>
+
+    <section id="progress">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">हामीले बनाएको आधार</span><h2>भिडियोदेखि संकेत खोजीसम्म</h2></div>
+          <p>काम केवल एउटा मोडेल तालिम गर्नु थिएन। भिडियो सङ्कलन, व्यक्तिको भाग काट्ने, शरीर र हातका बिन्दु निकाल्ने, समय मिलाउने, शब्दकोशसँग तुलना गर्ने र मानवले दिएको निर्णयलाई सुरक्षित राख्ने पूरा पाइपलाइन तयार गरिएको छ।</p>
+        </div>
+
+        <div class="flow" aria-label="प्रणालीको पाँच चरण">
+          <article><span class="step">१</span><h3>स्रोत भिडियो</h3><p>शिक्षण भिडियो, संसद् प्रसारण र एनटिभीका साइन भागहरू सङ्गठित गरियो।</p></article>
+          <article><span class="step">२</span><h3>पोज निष्कर्षण</h3><p>अनुहार, शरीर, हात र औँलाका १३३ बिन्दुको समयक्रम निकालियो।</p></article>
+          <article><span class="step">३</span><h3>संकेत प्रतिनिधित्व</h3><p>युनि-साइन आधार मोडेलबाट प्रत्येक समय-झ्यालको अर्थसूचक भेक्टर बनाइयो।</p></article>
+          <article><span class="step">४</span><h3>शब्द खोजी</h3><p>भेक्टरलाई ३,६५३ अवधारणाको शब्दकोश ग्यालरीसँग तुलना गरियो।</p></article>
+          <article><span class="step">५</span><h3>मानव मिलान</h3><p>साइनर वा दोभाषेले अर्थ, भिन्न रूप र सुरु/अन्त्य समय सच्याउने व्यवस्था बनाइयो।</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">मुख्य उपलब्धि</span><h2>हालसम्मको यात्रा</h2></div>
+          <p>हरेक चरणमा नतिजा राम्रो देखाउनुभन्दा त्रुटि पत्ता लगाउन प्राथमिकता दिइयो। गलत मूल्याङ्कन छनोट, पर्दामा देखिएको शब्दको प्रभाव, ग्यालरी रूपान्तरण र डाटा चुहावटजस्ता समस्या भेटिएपछि नतिजा पुनःगणना गरिएको छ।</p>
+        </div>
+
+        <div class="timeline">
+          <article class="milestone"><div class="date">डाटा आधार</div><div><h3>शब्दकोश, शिक्षण र प्रसारण डाटा एकीकृत</h3><p>नेपाली साङ्केतिक भाषा शब्दकोश, शिक्षण भिडियो, संसद् र एनटिभी पोजलाई फरक स्रोत र प्रयोग-सीमासहित व्यवस्थित गरियो।</p></div></article>
+          <article class="milestone"><div class="date">गुणस्तर नियन्त्रण</div><div><h3>पर्दाको अक्षर, गलत खण्ड र पोज गुणस्तर परीक्षण</h3><p>चार फ्रेम, देवनागरी ओसिआर र रङ-च्यानल परीक्षणबाट ‘साइन’ जस्तो देखिए पनि वास्तवमा पर्दाको शब्द मात्र भएको ठूलो प्रदूषण छुट्याइयो।</p></div></article>
+          <article class="milestone"><div class="date">इमानदार बेन्चमार्क</div><div><h3>२१९ छुट्टै र ३७ निरन्तर संकेत स्थिर</h3><p>तालिमबाट अलग, ह्यासद्वारा सुरक्षित मूल्याङ्कन सेट बनाइयो। मोडेल छनोटका लागि यी सेट प्रयोग नगर्ने नियम लागू गरिएको छ।</p></div></article>
+          <article class="milestone"><div class="date">पाँच तालिम चरण</div><div><h3>समय-सन्दर्भ एडाप्टरदेखि पोज-स्तर तालिमसम्म</h3><p>साना समय-झ्याल, निरन्तर सन्दर्भ, स्व-पर्यवेक्षित तालिम र सीटीसी अर्थ-सङ्केत प्रयोग गरी पाँच प्रमुख प्रयोग गरिए। चौथो चरण सञ्चालनमा उपयोगी रह्यो; पाँचौँ चरणले पूर्वनिर्धारित सफलता सीमा पार गरेन।</p></div></article>
+          <article class="milestone"><div class="date">समीक्षा पूर्वाधार</div><div><h3>निजी समीक्षा तथा नयाँ रेकर्डिङ प्रणाली</h3><p>७० निरन्तर क्लिप, ३० अवधारणाका ६० जोडी रेकर्डिङ निर्देशन, सहमति, दुई स्वतन्त्र समीक्षकको सहमति र सुरक्षित स्टेजिङ व्यवस्था तयार छ।</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="results">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">मोडेल नतिजा</span><h2>क्षमता छ, तर अझै उत्पादन होइन</h2></div>
+          <p>छुट्टै, स्पष्ट संकेतमा नतिजा आशाजनक छ। प्राकृतिक निरन्तर साइनमा सुधार देखिए पनि नमुना सानो छ र मिल्दो ग्यालरी परीक्षणमा लाभ टिकेको छैन। त्यसैले प्रतिशतलाई उपलब्धि र सीमा दुवैसँगै पढ्नुपर्छ।</p>
+        </div>
+
+        <div class="results-layout">
+          <article class="panel">
+            <h3>शीर्ष–५ सही खोज दर</h3>
+            <div class="metric"><div class="metric-line"><span>छुट्टै संकेत · स्थिर आधार</span><b>३०.१%</b></div><div class="bar"><i style="width:30.1%">&nbsp;</i></div></div>
+            <div class="metric"><div class="metric-line"><span>निरन्तर संकेत · स्थिर आधार</span><b>५.४%</b></div><div class="bar"><i class="fail" style="width:5.4%">&nbsp;</i></div></div>
+            <div class="metric"><div class="metric-line"><span>निरन्तर संकेत · चरण ४, कच्चा बहु-झ्याल</span><b>१६.२%</b></div><div class="bar"><i class="best" style="width:16.2%">&nbsp;</i></div></div>
+            <div class="metric"><div class="metric-line"><span>निरन्तर संकेत · चरण ५, मिल्दो ग्यालरी</span><b>५.४%</b></div><div class="bar"><i class="fail" style="width:5.4%">&nbsp;</i></div></div>
+            <div class="callout"><p><strong>सही अर्थ:</strong> चरण ४ ले सञ्चालनको एउटा विशेष खोज-विधिमा सुधार दियो। तर चरण ५ ले नयाँ शीर्ष–५ सफलता थपेन। थप ठूलो मोडेल मात्र बनाउनु समाधान नभएको प्रमाण यही हो।</p></div>
+            <p class="fineprint">निरन्तर सेटमा ३७ उदाहरण मात्र छन्। चरण ४ को १६.२% नतिजा ०.६ सेकेन्डका बहु-झ्याल र कच्चा शब्दकोश ग्यालरी प्रयोग गरी पुनःजाँच गरिएको हो। यसलाई पूर्ण भाषानुवाद वा वास्तविक समयको विश्वसनीयता भनेर बुझ्न मिल्दैन।</p>
+          </article>
+
+          <article class="panel dark">
+            <h3>अनुसन्धानले के सिकायो?</h3>
+            <p>समस्या शब्दको सूची सानो हुनु मात्र होइन। ३७ मध्ये २९ निरन्तर उदाहरणका शब्द तालिम डाटामा पहिल्यै थिए, तर चरण ५ ले तिनमा पनि नयाँ शीर्ष–५ सफलता थपेन।</p>
+            <p>मुख्य बाधा तीन ठाउँमा छ:</p>
+            <ol>
+              <li>निरन्तर साइनमा अघिल्लो र पछिल्लो संकेत मिसिनु,</li>
+              <li>बोली/क्याप्सन र वास्तविक साइनको समय नमिल्नु,</li>
+              <li>शब्दकोशको छुट्टै रूप र प्राकृतिक प्रयोगबीच भिन्नता हुनु।</li>
+            </ol>
+            <p><strong>त्यसैले अबको उच्च-मूल्य काम सही अर्थ र सुरु/अन्त्य समय भएका निरन्तर उदाहरण सङ्कलन गर्नु हो।</strong></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="data">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">तयार सामग्री</span><h2>तालिमभन्दा ठूलो सम्पत्ति</h2></div>
+          <p>अहिलेसम्मको मुख्य उपलब्धि केवल एउटा चेकपोइन्ट होइन। पुनःप्रयोग गर्न मिल्ने डाटा सूची, पोज क्यास, परीक्षण सेट, त्रुटि प्रतिवेदन र मानव समीक्षा मार्ग तयार छन्।</p>
+        </div>
+        <div class="inventory">
+          <article><strong>४८९ खण्ड</strong><h3>सीटीसी तालिम कोर्पस</h3><p>९७ भिडियोमा १.२१ घण्टा; तीमध्ये बहु-विषयवस्तु शब्द भएका ०.८० घण्टा मुख्य तालिम बीउ हुन्।</p></article>
+          <article><strong>८३८ कार्ड</strong><h3>हरि स्व-ग्यालरी</h3><p>उच्च-विश्वास भएका छुट्टै प्रदर्शन, ५३५ अवधारणामा समेटिएका; शब्दकोश त्रुटि पत्ता लगाउन उपयोगी।</p></article>
+          <article><strong>१.०८ मिलियन</strong><h3>समय-झ्याल</h3><p>संसद् र एनटिभी पोजबाट तयार निरन्तर प्रतिनिधित्व, स्व-पर्यवेक्षित तालिमका लागि।</p></article>
+          <article><strong>७० क्लिप</strong><h3>दोभाषे समीक्षा पङ्क्ति</h3><p>४० भिडियो र ४५ अवधारणा; सबै क्लिप तयार, ओसिआर-जाँच र पूर्ण डिकोड परीक्षण पास।</p></article>
+          <article><strong>६० कार्य</strong><h3>जोडी नयाँ रेकर्डिङ</h3><p>३० अवधारणाका स्पष्ट शब्दकोश रूप र प्राकृतिक वाक्यगत प्रयोग—प्रत्येकका दुई पुनरावृत्ति।</p></article>
+          <article><strong>५ प्रयोग समूह</strong><h3>जोगाइएका मोडेल र प्रतिवेदन</h3><p>चरण ४ र ५ का चेकपोइन्ट, ह्यास, तालिम लग र स्थिर मूल्याङ्कन प्रतिवेदन सुरक्षित छन्।</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="guardrails">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">डाटा जिम्मेवारी</span><h2>मानव निर्णयलाई मेसिनले नबदल्ने</h2></div>
+          <p>साङ्केतिक भाषा डाटा केवल प्राविधिक सामग्री होइन। सहमति, समुदायको भूमिका, भिन्न संकेत रूप र मूल्याङ्कनको अखण्डता परियोजनाको आधारभूत नियम हुन्।</p>
+        </div>
+        <div class="guardgrid">
+          <article><h3>स्थिर मानव मूल्याङ्कन</h3><p>मानव-पुष्टि भएको मूल्याङ्कन डाटा तालिममा मिसाइँदैन र मेसिनले त्यसलाई स्वतः ‘सच्याउँदैन’।</p></article>
+          <article><h3>स्वतन्त्र सहमति</h3><p>समीक्षा गरिएको क्लिप तालिमयोग्य बन्न कम्तीमा दुई स्वतन्त्र सहभागीको अर्थ र समय-सीमा मिल्नुपर्छ।</p></article>
+          <article><h3>स्पष्ट सहमति</h3><p>नयाँ भिडियो स्पष्ट सहमतिपछि मात्र भण्डारण हुन्छ। कानुनी नाम, फोन वा अनावश्यक व्यक्तिगत विवरण उपकरणले माग्दैन।</p></article>
+          <article><h3>इमानदार प्रतिवेदन</h3><p>असफल प्रयोग, सानो नमुना, ग्यालरी त्रुटि र मापनका सीमाहरू सफल नतिजासँगै सार्वजनिक सारांशमा राखिन्छन्।</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="collaboration">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">अबको चरण</span><h2>अनुभवी साइनर र दोभाषेको सहयोग</h2></div>
+          <p>प्राविधिक प्रणाली तयार छ। अब आवश्यक काम छोटा क्लिपमा वास्तविक अर्थ र साइनको ठीक सुरु/अन्त्य समय जाँच्नु हो। यो काम साङ्केतिक भाषामा दक्ष व्यक्तिले मात्र विश्वसनीय रूपमा गर्न सक्छ।</p>
+        </div>
+
+        <div class="next">
+          <article class="ask">
+            <h3>पहिलो सत्रमा के गरिन्छ?</h3>
+            <ul>
+              <li>३०–४० छोटा निरन्तर साइन क्लिप हेर्ने,</li>
+              <li>देखाइएको अवधारणा वास्तवमै साइन भएको छ कि छैन भन्ने,</li>
+              <li>गलत भए सही अर्थ वा प्रचलित भिन्न रूप लेख्ने,</li>
+              <li>साइन सुरु र अन्त्य भएको ठीक समय चिन्ह लगाउने,</li>
+              <li>प्रत्यक्ष समानार्थी संकेत नभए त्यसैअनुसार उल्लेख गर्ने।</li>
+            </ul>
+            <p>पहिलो सत्र करिब ६०–९० मिनेटको हुनेछ। कुनै सफ्टवेयर स्थापना वा प्राविधिक ज्ञान आवश्यक छैन। समयको उचित पारिश्रमिक आपसी सहमतिमा तय गरिनेछ।</p>
+          </article>
+
+          <div class="worklist" aria-label="प्राविधिक आगामी काम">
+            <article class="workitem"><b>०१</b><div><h3>निरन्तर मिलान</h3><p>दोभाषेले सच्याएका समय-सीमा र अर्थलाई दुई स्वतन्त्र समीक्षाबाट तालिम स्टेजिङमा लैजाने।</p></div></article>
+            <article class="workitem"><b>०२</b><div><h3>शब्दकोश सफाइ</h3><p>५३५ साझा अवधारणामा असामान्य वा गलत सन्दर्भ भिडियो मेसिनबाट छान्ने र विशेषज्ञ समीक्षा माग्ने।</p></div></article>
+            <article class="workitem"><b>०३</b><div><h3>खोज डेमो</h3><p>भिडियोबाट पोज निकालेर सम्भावित शीर्ष–५ नेपाली साङ्केतिक शब्द र सन्दर्भ भिडियो देखाउने इमानदार प्रोटोटाइप।</p></div></article>
+            <article class="workitem"><b>०४</b><div><h3>प्रशिक्षण पुनःपरीक्षण</h3><p>नयाँ मान्य मिलान आएपछि मात्र चरण ४ विरुद्ध पूर्वनिर्धारित सफल/असफल सीमामा नयाँ मोडेल परीक्षण गर्ने।</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div><strong>नेपाली साङ्केतिक भाषा अनुसन्धान</strong><p>यो अनुसन्धान प्रगति पृष्ठ हो, तयार व्यावसायिक उत्पादनको दाबी होइन। अन्तिम अद्यावधिक: १३ जुलाई २०२६।</p></div>
+      <p>विस्तृत प्राविधिक सामग्री र डाटा गोपनीयता तथा समुदाय समीक्षापछि मात्र सार्वजनिक गरिनेछ।</p>
+    </div>
+  </footer>
+</body>
+</html>
