@@ -96,9 +96,6 @@
     h1 b, .statement b, .accent { color: var(--accent); }
     .lead { max-width: 900px; margin: 28px auto 0; color: #444; font-size: 18px; }
 
-    .headline-facts { margin: 22px 0 0; color: var(--quiet); font-size: 15px; }
-    .headline-facts span + span::before { content: " | "; color: var(--rule); }
-
     nav { margin-top: 34px; font-size: 19px; }
     nav a { margin: 0 9px; color: var(--ink); text-decoration: none; }
     nav a:hover { color: var(--accent); }
@@ -155,6 +152,57 @@
       font-size: 21px;
     }
 
+    .journey { margin-top: 28px; border-top: 2px solid var(--ink); }
+    .journey-step {
+      display: grid;
+      grid-template-columns: 100px minmax(0, 1fr);
+      gap: 24px;
+      padding: 27px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .step-number { color: var(--accent); font-size: 15px; }
+    .journey-step h3 { font-size: 22px; }
+    .plain-language { margin-top: 10px; color: var(--quiet); }
+    .plain-language strong { color: var(--accent); font-size: 14px; }
+    .paper-links { color: var(--quiet); font-size: 14px; }
+
+    .method-flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 28px;
+      margin-top: 30px;
+    }
+    .method-step { padding-top: 16px; border-top: 2px solid var(--ink); }
+    .method-step .method-number { display: block; margin-bottom: 10px; color: var(--accent); font-size: 14px; }
+    .method-step h3 { font-size: 17px; }
+    .method-step p { color: var(--quiet); font-size: 15px; }
+
+    .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 40px 28px;
+      margin-top: 28px;
+    }
+    figure { margin: 0; }
+    figure.wide { grid-column: 1 / -1; }
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--rule);
+      background: #f5f5f5;
+    }
+    figcaption { margin-top: 11px; color: var(--quiet); font-size: 14px; line-height: 1.55; }
+    figcaption strong { color: var(--ink); }
+    .privacy-note {
+      margin-top: 22px;
+      padding: 14px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      color: var(--quiet);
+      font-size: 14px;
+    }
+
     .split {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -195,8 +243,6 @@
       .status { margin-top: 34px; }
       h1 { font-size: 42px; }
       .lead { font-size: 16px; }
-      .headline-facts { display: grid; gap: 4px; }
-      .headline-facts span + span::before { content: none; }
       nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px 2px; font-size: 17px; }
       nav a { margin: 0 5px; }
       hr { margin: 34px 0; }
@@ -212,6 +258,11 @@
       .result-table td { padding: 2px 0; border: 0; }
       .result-table td::before { content: attr(data-label) ": "; color: var(--quiet); font-size: 13px; }
       .result-table .score { font-size: 19px; }
+      .journey-step { grid-template-columns: 1fr; gap: 6px; padding: 22px 0; }
+      .journey-step h3 { font-size: 19px; }
+      .method-flow { grid-template-columns: 1fr; gap: 24px; }
+      .visual-grid { grid-template-columns: 1fr; gap: 32px; }
+      figure.wide { grid-column: auto; }
       .split { grid-template-columns: 1fr; gap: 34px; }
       .principles { columns: 1; }
       .callout { padding-left: 16px; font-size: 18px; }
@@ -236,14 +287,9 @@
     <p class="status"><span class="pill">अनुसन्धान</span>अद्यावधिक · १४ जुलाई २०२६</p>
     <h1>सफा संकेतबाट <b>निरन्तर साइनसम्म।</b></h1>
     <p class="lead">नेपाली साङ्केतिक भाषा पहिचान गर्न हामीले तयार गरेको डाटा, मोडेल नतिजा, असफलता र अब समुदायसँग गर्नुपर्ने कामको खुला अभिलेख।</p>
-    <p class="headline-facts">
-      <span>११९.६ घण्टा निरन्तर पोज</span>
-      <span>३,६५३ अवधारणाको खोज ग्यालरी</span>
-      <span>२१९ + ३७ मानव-पुष्टि मूल्याङ्कन</span>
-    </p>
     <nav aria-label="मुख्य नेभिगेसन">
-      <a href="#status">अवस्था</a><span class="sep">|</span>
-      <a href="#work">तयार काम</a><span class="sep">|</span>
+      <a href="#journey">यात्रा</a><span class="sep">|</span>
+      <a href="#method">विधि</a><span class="sep">|</span>
       <a href="#results">नतिजा</a><span class="sep">|</span>
       <a href="#community">समुदाय</a><span class="sep">|</span>
       <a href="#principles">डाटा नियम</a>
@@ -253,6 +299,136 @@
   <hr>
 
   <main id="main-content">
+    <section id="journey">
+      <h2>हामी कहाँबाट सुरु गर्‍यौँ</h2>
+      <p class="statement">यो काम सिधै “अनुवाद गर्ने एआई” बाट सुरु भएको होइन। हामीले पहिले <b>एउटा स्पष्ट संकेत के जस्तो देखिन्छ</b> भन्ने आधार बनायौँ, त्यसपछि मात्र प्राकृतिक निरन्तर साइनतर्फ गयौँ।</p>
+
+      <div class="journey">
+        <article class="journey-step">
+          <span class="step-number">०१ / शब्दकोश</span>
+          <div>
+            <h3>३,६५३ छुट्टाछुट्टै संकेतबाट पहिलो सन्दर्भ</h3>
+            <p>शब्दकोश भिडियोमा एक पटकमा प्रायः एउटै अवधारणा सफा रूपमा देखाइन्छ। तिनलाई शब्द/अवधारणाअनुसार मिलाएर हामीले खोज ग्यालरी बनायौँ। यही ग्यालरीले “यो चाल कुन ज्ञात संकेतसँग सबैभन्दा मिल्छ?” भन्ने पहिलो प्रश्नको उत्तर दिन्छ।</p>
+            <p class="plain-language"><strong>सरल भाषामा:</strong> यो फोटोसहितको शब्दकोशजस्तै हो—वाक्य बुझ्दैन, तर स्पष्ट संकेत दाँज्न उपयोगी हुन्छ।</p>
+          </div>
+        </article>
+
+        <article class="journey-step">
+          <span class="step-number">०२ / संसद</span>
+          <div>
+            <h3>त्यसपछि प्राकृतिक, लगातार गरिएको साइन हेर्‍यौँ</h3>
+            <p>संसद प्रसारणमा दोभाषेले वाक्यको अर्थसँगै लगातार साइन गर्नुहुन्छ। एउटा संकेत कहाँ सकियो र अर्को कहाँ सुरु भयो भन्ने सफा काट हुँदैन; हातको आकार, स्थान, अनुहार र गति छेउका संकेतसँग मिसिन्छ। बोलिएको क्याप्सन पनि साइनको शब्दशः समयरेखा होइन, त्यसैले त्यसलाई सत्य लेबल नभई सम्भावित सङ्केत मात्र मान्यौँ।</p>
+            <p class="plain-language"><strong>सरल भाषामा:</strong> शब्दकोशमा शब्द छुट्टाछुट्टै छन्; संसदमा ती बोल्दा जस्तै एक-अर्कामा बग्छन्।</p>
+          </div>
+        </article>
+
+        <article class="journey-step">
+          <span class="step-number">०३ / Uni-Sign</span>
+          <div>
+            <h3>अरू साङ्केतिक भाषाबाट सिकेको दृश्य प्रतिनिधित्व प्रयोग गर्‍यौँ</h3>
+            <p><a href="https://arxiv.org/abs/2501.15187">Uni-Sign अनुसन्धान</a> ले ठूलो परिमाणको साइन भिडियोबाट शरीर, हात, अनुहार र दृश्यलाई उपयोगी प्रतिनिधित्वमा बदल्न सकिने देखायो। हामीले त्यसको पूर्व-प्रशिक्षित पोज भागलाई स्थिर आधारका रूपमा प्रयोग गर्‍यौँ—यसलाई नेपाली साङ्केतिक भाषा स्वतः जान्ने अनुवादक मानेनौँ।</p>
+            <p class="plain-language"><strong>सरल भाषामा:</strong> यसले चालको “डिजिटल औँठाछाप” बनाउँछ; त्यस औँठाछापको नेपाली अर्थ छुट्टै डाटा र मानव समीक्षाबाट सिकाउनुपर्छ।</p>
+          </div>
+        </article>
+
+        <article class="journey-step">
+          <span class="step-number">०४ / RTMPose</span>
+          <div>
+            <h3>भिडियोबाट शरीर र हातका बिन्दु निकाल्यौँ</h3>
+            <p><a href="https://arxiv.org/abs/2303.07399">RTMPose</a> ले प्रत्येक फ्रेममा शरीर, हात र अनुहार कहाँ छन् भन्ने मुख्य बिन्दु पत्ता लगाउँछ। यसरी पृष्ठभूमि, कपडा वा भिडियो शैलीभन्दा चालको समयक्रममा ध्यान दिन सकिन्छ। तर यी बिन्दुले आफैँ “अर्थ” जान्दैनन् र औँला छोपिएको वा फ्रेम धमिलो भएको ठाउँमा गल्ती गर्न सक्छन्।</p>
+            <p class="plain-language"><strong>सरल भाषामा:</strong> यसले मानिसको चलिरहेको काँटामानचित्र बनाउँछ—नक्सा बनाउँछ, भाषा बुझ्दैन।</p>
+          </div>
+        </article>
+
+        <article class="journey-step">
+          <span class="step-number">०५ / पहिलो पुल</span>
+          <div>
+            <h3>शब्दकोशको संकेत संसदमा खोज्ने प्रयास गर्‍यौँ</h3>
+            <p>पोजको छोटो झ्याललाई Uni-Sign प्रतिनिधित्वमा बदलेर ३,६५३ संकेतको ग्यालरीसँग दाँज्यौँ। सफा शिक्षण संकेतमा उपयोगी क्षमता देखियो, तर संसदका ७८७ सम्भावित खण्डमा नजिकको बोलीसँग शीर्ष–५ सहमति करिब २% मात्र रह्यो। त्यसैले स्वतः संसद लेबल गर्ने योजना रोकेर समस्याको कारण मापन गर्न थाल्यौँ।</p>
+            <p class="plain-language"><strong>सरल भाषामा:</strong> शब्दकोशको फोटो चिन्न सक्ने प्रणालीले स्वाभाविक कुराकानी तुरुन्त बुझेन।</p>
+          </div>
+        </article>
+
+        <article class="journey-step">
+          <span class="step-number">०६ / मानव मिलान</span>
+          <div>
+            <h3>ड्यासबोर्ड बनाएर अर्थ र ठीक समय-सीमा जाँच्यौँ</h3>
+            <p>शब्दकोश सन्दर्भ र निरन्तर क्लिप सँगसँगै देखाएर समीक्षकले संकेत उपस्थित छ/छैन भन्न, सही शब्द सच्याउन र IN/OUT ह्यान्डल तानेर सुरु-अन्त्य मिलाउन सक्ने उपकरण बनायौँ। यही प्रक्रियाबाट २१९ छुट्टै र ३७ निरन्तर मानव-पुष्टि मूल्याङ्कन उदाहरण बने।</p>
+            <p class="plain-language"><strong>सरल भाषामा:</strong> मेसिनले सम्भावित ठाउँ देखाउँछ; भाषा जान्ने मानिसले के भयो र कहिले भयो भन्ने अन्तिम निर्णय गर्छ।</p>
+          </div>
+        </article>
+
+        <article class="journey-step">
+          <span class="step-number">०७ / निरन्तर तालिम</span>
+          <div>
+            <h3>११९.६ घण्टा चालबाट निरन्तर प्रतिनिधित्व सुधार्ने प्रयास</h3>
+            <p>संसदको ११९.६ घण्टा पोजलाई लेबलविहीन चाल सिकाइमा, र ४८९ शिक्षण खण्डलाई सीमित क्रम-सिकाइमा प्रयोग गर्‍यौँ। पाँच चरणका परीक्षणले सानो सुधार देखाए तर पूर्वनिर्धारित सफलता सीमा पार गरेनन्। अहिलेको बाधा कम्प्युट मात्र होइन—विश्वसनीय निरन्तर अर्थ र समय-मिलान हो।</p>
+            <p class="plain-language"><strong>सरल भाषामा:</strong> धेरै भिडियो हुनु पर्याप्त भएन; सही ठाउँमा सही अर्थ जोडिएको उदाहरण चाहियो।</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="paper-links">मुख्य प्राविधिक सन्दर्भ: <a href="https://arxiv.org/abs/2501.15187">Uni-Sign</a> · <a href="https://arxiv.org/abs/2303.07399">RTMPose</a>। यी बाह्य विधि हुन्; नेपाली डाटा निर्माण, मूल्याङ्कन, ड्यासबोर्ड र निरन्तर-अनुकूलन यस परियोजनामा गरिएको हो।</p>
+    </section>
+
+    <hr>
+
+    <section id="method">
+      <h2>प्रयोगमा विधि कसरी चल्छ</h2>
+      <p class="statement">भिडियो सिधै शब्द बन्दैन। बीचमा <b>चाल निकाल्ने, छोटो समय-झ्याल बनाउने, समानता खोज्ने, मानिसले मिलाउने र अलग परीक्षण गर्ने</b> चरण छन्।</p>
+
+      <div class="method-flow">
+        <article class="method-step"><span class="method-number">०१</span><h3>स्रोत छुट्याउने</h3><p>शब्दकोश, शिक्षण भिडियो र संसद प्रसारणलाई एउटै प्रकारको डाटा मानिँदैन। प्रत्येकको भूमिका र भरोसा छुट्टै लेखिन्छ।</p></article>
+        <article class="method-step"><span class="method-number">०२</span><h3>RTMPose पोज</h3><p>फ्रेम-फ्रेमबाट शरीर, हात र अनुहारका बिन्दु निकालेर समयसँगै चलेको पोज बनाइन्छ।</p></article>
+        <article class="method-step"><span class="method-number">०३</span><h3>समय-झ्याल</h3><p>निरन्तर चाललाई साना, एक-अर्कामाथि केही खप्टिने झ्यालमा काटिन्छ ताकि संकेतको सम्भावित सीमा नछुटोस्।</p></article>
+        <article class="method-step"><span class="method-number">०४</span><h3>Uni-Sign प्रतिनिधित्व</h3><p>हरेक झ्याललाई तुलना गर्न मिल्ने सङ्ख्यात्मक प्रतिनिधित्वमा बदलिन्छ; नजिकका चालहरू नजिक पर्ने प्रयास हुन्छ।</p></article>
+        <article class="method-step"><span class="method-number">०५</span><h3>खोज र उम्मेदवार</h3><p>प्रतिनिधित्वलाई ३,६५३ शब्दकोश सन्दर्भसँग दाँजेर सम्भावित अर्थ र समय निकालिन्छ। यो सुझाव हो, सत्य लेबल होइन।</p></article>
+        <article class="method-step"><span class="method-number">०६</span><h3>मानव IN/OUT मिलान</h3><p>समीक्षकले भिडियो हेरेर अर्थ, भिन्न रूप र साइनको सही सुरु/अन्त्य सच्याउनुहुन्छ।</p></article>
+        <article class="method-step"><span class="method-number">०७</span><h3>तालिम</h3><p>लेबल नभएको संसद पोजबाट चालको ढाँचा र मानव-मिलान शिक्षण खण्डबाट अवधारणाको क्रम सिकाइन्छ।</p></article>
+        <article class="method-step"><span class="method-number">०८</span><h3>स्थिर मूल्याङ्कन</h3><p>२१९ छुट्टै र ३७ निरन्तर उदाहरण तालिमबाट अलग रहन्छन्; मोडेल सकिएपछि मात्र नतिजा जाँचिन्छ।</p></article>
+      </div>
+
+      <div class="callout"><strong>महत्त्वपूर्ण सीमा:</strong> संसदको बोली/क्याप्सन समय पत्ता लगाउने सङ्केत हुन सक्छ, तर नेपाली साङ्केतिक भाषाको शब्दशः सत्य मानिँदैन। मानव-पुष्टि नभएको क्याप्सन मूल्याङ्कन लेबल बन्दैन।</div>
+    </section>
+
+    <hr>
+
+    <section id="visuals">
+      <h2>वास्तविक उपकरण र दृश्य</h2>
+      <p>यी परियोजनाकै चलिरहेका ड्यासबोर्ड र पोज आउटपुट हुन्। सार्वजनिक चित्रका लागि आन्तरिक स्रोत पहिचान हटाइएको छ र व्यक्तिको अनुहार छोपिएको छ; हात, शरीर, समयरेखा र नतिजा जस्ताको तस्तै राखिएका छन्।</p>
+
+      <div class="visual-grid">
+        <figure class="wide">
+          <img src="assets/dictionary-parliament-alignment.png" width="1440" height="900" loading="lazy" alt="बायाँ शब्दकोश संकेत र बीचमा संसद प्रसारणको साइन राखेर IN र OUT समय मिलाउने ड्यासबोर्ड; अनुहार छोपिएको">
+          <figcaption><strong>शब्दकोश → संसद मिलान।</strong> बायाँ स्पष्ट सन्दर्भ, बीचमा प्रसारणको प्राकृतिक संकेत, तल फ्रेम र IN/OUT नियन्त्रण। यही दृश्यले एउटै अवधारणा छुट्टै र वाक्यभित्र कति फरक देखिन्छ भन्ने देखाउँछ।</figcaption>
+        </figure>
+
+        <figure>
+          <img src="assets/continuous-diagnostic.png" width="1440" height="900" loading="lazy" alt="छुट्टै र निरन्तर संकेत दाँजेर निरन्तर अवस्थामा पहिचान घटेको देखाउने स्टेप शून्य ड्यासबोर्ड; अनुहार छोपिएको">
+          <figcaption><strong>स्टेप–० निदान।</strong> एउटै शब्दको छुट्टै र निरन्तर रूप दाँजेर ३७ मानव-पुष्टि उदाहरणमा प्रतिनिधित्व ३५% मात्र जोगिएको निष्कर्ष निस्कियो।</figcaption>
+        </figure>
+
+        <figure>
+          <img src="assets/expert-alignment-editor.png" width="1440" height="900" loading="lazy" alt="शब्दकोश र शिक्षण क्लिपसँगै राखेर समयरेखामा IN र OUT तान्ने विशेषज्ञ मिलान सम्पादक">
+          <figcaption><strong>विशेषज्ञ मिलान सम्पादक।</strong> समीक्षकले सही शब्द टाइप गर्न, IN/OUT तान्न, पुष्टि गर्न वा “साइन छैन/अनिश्चित” छान्न सक्नुहुन्छ। भिडियो सार्वजनिक चित्रमा हटाइएको छ।</figcaption>
+        </figure>
+
+        <figure>
+          <img src="assets/community-data-studio.png" width="1440" height="1000" loading="lazy" alt="मौजुदा निरन्तर क्लिप समीक्षा र नयाँ साइन रेकर्डिङका दुई बाटा देखाउने समुदाय डाटा स्टुडियो">
+          <figcaption><strong>समुदाय डाटा स्टुडियो।</strong> सुरुवाती समयको ६५% मौजुदा निरन्तर क्लिप मिलाउन र ३५% लक्षित नयाँ उदाहरण रेकर्ड गर्न प्रस्ताव गरिएको छ।</figcaption>
+        </figure>
+
+        <figure>
+          <img src="assets/pose-sequence.png" width="1200" height="600" loading="lazy" alt="क्रमिक भिडियो फ्रेमबाट निकालिएका शरीर र हातका पोज बिन्दुको सम्पर्क पाना">
+          <figcaption><strong>RTMPose पछि देखिने चाल।</strong> प्रत्येक सानो आकृति एउटा समयको शरीर/हात नक्सा हो। यसले पहिचानयोग्य फोटोभन्दा चाल जोगाउँछ, तर अर्थ वा सही संकेत सीमा आफैँ बताउँदैन।</figcaption>
+        </figure>
+      </div>
+
+      <p class="privacy-note"><strong>सार्वजनिक दृश्य नीति:</strong> ड्यासबोर्ड उत्पादनमा निजी नेटवर्कमै रहन्छ। यहाँ स्थिर, सफा गरिएको चित्र मात्र राखिएको छ—कुनै सहभागी कोड, आन्तरिक भिडियो आईडी, सम्पर्क विवरण वा योगदान फाइल सार्वजनिक गरिएको छैन।</p>
+    </section>
+
+    <hr>
+
     <section id="status">
       <h2>अहिलेको अवस्था</h2>
       <p class="statement">छुट्टै र स्पष्ट संकेतमा <b>वास्तविक पहिचान क्षमता</b> देखिएको छ। प्राकृतिक निरन्तर साइनमा समय-सीमा, भिन्न रूप र सह-संकेत अझै मुख्य बाधा हुन्।</p>
